@@ -1,4 +1,6 @@
 import tensorflow as tf
+import matplotlib.pyplot as plt
+import pandas as pd
 import time
 import os
 
@@ -19,11 +21,18 @@ def create_model(input_shape, LOSS_FUNC, OPTIMIZER, metrics):
 
 
 def get_unique_filename(filename):
-    unique_filename = time.strftime(f"{filename}_%Y-%m-%d_T_%H_%M_%S.h5")
+    unique_filename = time.strftime(f"{filename}_%Y-%m-%d_T_%H_%M_%S")
     return unique_filename
 
 
 def save_model(model, model_name,model_dr):
-    unique_filename = get_unique_filename(model_name)
+    unique_filename = get_unique_filename(model_name)+".h5"
     path = os.path.join(model_dr,unique_filename)
     model.save(path)
+
+def save_plot(data,plot_name,plot_dr):
+    unique_filename =get_unique_filename(plot_name)
+    path = os.path.join(plot_dr,unique_filename)
+    pd.DataFrame(data.history).plot(figsize=(10, 7))
+    plt.grid(True)
+    plt.savefig(path)
