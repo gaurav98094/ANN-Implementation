@@ -1,5 +1,5 @@
 params:
-  epochs: 5
+  epochs: 2
   batch_size: 32
   no_classes: 10
   input_shape: [28,28]
@@ -13,6 +13,7 @@ artifacts:
   model_dir: model 
   plots_dir: plots
   checkpoint_dir: checkpoints
+  model_name: model
   
 logs:
   logs_dir: logs
