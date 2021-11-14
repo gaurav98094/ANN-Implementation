@@ -29,3 +29,7 @@ conda list env
 -e . ### <<< To install local packages defined in setup.py
 
 
+### Running TensorBoard
+```bash
+tensorboard --logdir=logs/tensorboard/
+```

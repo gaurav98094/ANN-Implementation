@@ -1,4 +1,5 @@
 import yaml
+import time
 
 def read_config(config_path):
     with open(config_path) as config_file:
@@ -6,4 +7,7 @@ def read_config(config_path):
     
     return content
 
-    
+def get_unique_filename(filename):
+    timestamp = time.asctime().replace(" ","_").replace(":","_")
+    unique_filename = time.strftime(f"{filename}_at_{timestamp}")
+    return unique_filename

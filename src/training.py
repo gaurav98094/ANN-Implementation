@@ -1,12 +1,12 @@
 
-
-from utils.common import read_config
-
-from utils.data_mgmt import get_data
-from utils.model import create_model, save_model, save_plot
+import argparse
 import os
 
-import argparse
+from utils.callbacks import get_callbacks
+
+from utils.common import read_config
+from utils.data_mgmt import get_data
+from utils.model import create_model, save_model, save_plot
 
 
 def training(config_path):
@@ -25,7 +25,10 @@ def training(config_path):
     EPOCHS = config["params"]["epochs"]
     VALIDATION = (X_val, y_val)
 
-    history = model.fit(X_train, y_train, epochs=EPOCHS, validation_data=VALIDATION)
+    CALLBACK_LIST = get_callbacks(config,X_train)
+
+    history = model.fit(X_train, y_train, epochs=EPOCHS, validation_data=VALIDATION, callbacks= CALLBACK_LIST)
+
 
     model_name = config["artifacts"]["model_name"]
     model_dir = config["artifacts"]["model_dir"]

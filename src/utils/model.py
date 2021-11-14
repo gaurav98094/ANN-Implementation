@@ -1,7 +1,10 @@
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import pandas as pd
-import time
+
+from utils.common import get_unique_filename
+
+
 import os
 
 def create_model(input_shape, LOSS_FUNC, OPTIMIZER, metrics):
@@ -20,9 +23,6 @@ def create_model(input_shape, LOSS_FUNC, OPTIMIZER, metrics):
     return model
 
 
-def get_unique_filename(filename):
-    unique_filename = time.strftime(f"{filename}_%Y-%m-%d_T_%H_%M_%S")
-    return unique_filename
 
 
 def save_model(model, model_name,model_dr):
